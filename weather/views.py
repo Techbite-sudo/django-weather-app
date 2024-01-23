@@ -5,6 +5,9 @@ import json
 
 # Create your views here.
 def index(request):
+    city = ""  # Initialize the variable outside the if statement
+    data = {}
+
     if request.method == "POST":
         if "city" in request.POST:
             city = request.POST["city"]
@@ -24,8 +27,5 @@ def index(request):
                 "pressure": str(json_data["main"]["pressure"]),
                 "humidity": str(json_data["main"]["humidity"]),
             }
-        else:
-            city = ""
-            data = {}
 
-    return render(request, "index.html", {'city': city, 'data': data})
+    return render(request, "index.html", {"city": city, "data": data})
